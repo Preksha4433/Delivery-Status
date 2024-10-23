@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header">
+      <div class="title">
+        <h2>Delivery Status</h2>
+        <p>Please provide the necessary information to raise an order</p>
+      </div>
+      <div class="actions">
+        <button class="refresh">Refresh</button>
+        <button class="live-tracking" disabled>Live Tracking</button>
+      </div>
+    </div>
+  
+    <div class="stepper">
+      <div
+        class="step"
+        *ngFor="let step of steps; let i = index"
+        [ngClass]="{
+          'active': i <= currentStep,
+          'next': i === currentStep + 1,
+          'inactive': i > currentStep + 1
+        }"
+        (click)="onStepClick(i)"
+      >
+        <div class="circle">
+          <span *ngIf="i <= currentStep" class="tick">&#10003;</span>
+        </div>
+        <div class="step-info">
+          <div class="step-detail">{{ step.title }}</div>
+          <div class="step-date">{{ step.date }}</div>
+        </div>
+        <!-- Dashed line between steps -->
+        <div *ngIf="i < steps.length - 1" class="dash-line"></div>
+      </div>
+    </div>
+  </div>
+  
